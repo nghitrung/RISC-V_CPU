@@ -1,25 +1,26 @@
 `timescale 1ns / 1ps
 module top_module(
     input logic clk,
-    input logic rst
+    input logic rst,
+    output logic [31:0] pc_debug,
+    output logic [31:0] instr_debug,
+    output logic [31:0] alu_debug,
+    output logic [31:0] reg_x1_debug,
+    output logic [31:0] reg_x2_debug,
+    output logic [31:0] output_debug
 );
-    logic [31:0] pc;
-    logic [31:0] instr;
-    logic reg_write, ALU_src, branch, zero, mem_to_reg, mem_write, mem_read;
+    logic [31:0] pc, instr, read_data1, read_data2, read_data, address, imm_ext, mux1_out, write_back, next_pc, pc_in_val, sum, pc_out;
+    logic reg_write, ALU_src, branch, zero, mem_to_reg, mem_write, mem_read, sel;
     logic [1:0] ALUOp;
-    logic [31:0] read_data1;
-    logic [31:0] read_data2;
-    logic [31:0] read_data;
-    logic [31:0] address;
-    logic [31:0] imm_ext;
-    logic [31:0] mux1_out;
-    logic [31:0] sel;
     logic [3:0] op;
-    logic [31:0] write_back;
-    logic [31:0] next_pc;
-    logic [31:0] pc_out;
-    logic [31:0] sum;
 
+    assign pc_debug = pc;
+    assign instr_debug = instr;
+    assign alu_debug = op;
+    assign reg_x1_debug = read_data1;
+    assign reg_x2_debug = read_data2;
+    assign output_debug = write_back;
+    
     // PC
     Program_counter Program_counter(
         .clk(clk),
@@ -29,17 +30,17 @@ module top_module(
     );
 
     // PC adder
-    add1 add1(
+    Add1 Add1(
         .PC_from(pc),
         .PC_next(next_pc)
     );
 
     // Instruction memory 
-    Instruction Instruction (
+    Instruction_mem Instruction_mem (
         .clk(clk),
         .rst(rst),
         .read_addr(pc),
-        .instr_out()
+        .instr_out(instr)
     );
 
     // Register unit
@@ -92,26 +93,26 @@ module top_module(
     );
 
     // Mux in ALU part
-    Mux1 mux1 (
+    Mux1 Mux1 (
         .sel1(ALU_src),
         .a1(read_data2),
         .b1(imm_ext),
         .mux1_out(mux1_out)
     );
 
-    And And (
+    And1 And1 (
         .branch_in(branch),
         .zero_in(zero),
         .and_out(sel)
     );
 
-    add2 add2 (
+    Add2 Add2 (
         .in1(pc),
         .in2(imm_ext),
-        .add_out(sum2)
+        .add_out(sum)
     );
 
-    Mux2 mux2 (
+    Mux2 Mux2 (
         .sel2(sel),
         .a2(next_pc),
         .b2(sum),

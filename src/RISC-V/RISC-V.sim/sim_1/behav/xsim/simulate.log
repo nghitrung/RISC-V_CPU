@@ -1,0 +1,13 @@
+Time resolution is 1 ps
+T=6000 pc=0 instr=00000000 alu_out=2 x1=0 x2=0  output=0
+T=16000 pc=4 instr=019806b3 alu_out=2 x1=79 x2=33  output=112
+T=26000 pc=8 instr=403402b3 alu_out=6 x1=8 x2=5  output=3
+T=36000 pc=12 instr=004170b3 alu_out=0 x1=4 x2=7  output=4
+T=46000 pc=16 instr=0051e233 alu_out=1 x1=5 x2=3  output=7
+T=56000 pc=20 instr=003a8b13 alu_out=2 x1=23 x2=5  output=26
+T=66000 pc=24 instr=00146493 alu_out=1 x1=8 x2=4  output=9
+T=76000 pc=28 instr=00f2a403 alu_out=2 x1=3 x2=5  output=0
+T=86000 pc=32 instr=00f2a623 alu_out=2 x1=3 x2=5  output=15
+T=96000 pc=36 instr=00948663 alu_out=6 x1=9 x2=9  output=0
+T=106000 pc=48 instr=00000000 alu_out=2 x1=1 x2=1  output=2
+$finish called at time : 110 ns : File "C:/Users/Trung/Desktop/RISC-V_CPU/vivado/RISC-V/RISC-V.srcs/sources_1/new/top_module_tb.sv" Line 98
