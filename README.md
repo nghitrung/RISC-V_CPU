@@ -36,7 +36,7 @@ The processor executes one instruction per clock cycle following these stages:
 ![my_images](https://github.com/nghitrung/RISC-V_CPU/blob/main/images/RISC-testcase.png)
 
 * Simulation result:
-![my_images](https://github.com/nghitrung/RISC-V_CPU/blob/main/images/RISC-testcase.png)
+![my_images](https://github.com/nghitrung/RISC-V_CPU/blob/main/images/RISC-tb.png)
 
 
 # Authors 
